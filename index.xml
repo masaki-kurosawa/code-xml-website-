@@ -1,0 +1,1915 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+    <meta content='Dịch vụ DNS chuyên nghiệp cho tên miền con' name='description'/>
+    <meta content='DNS, tên miền con, dịch vụ' name='keywords'/>
+    <meta content='MSK DNS FREE' name='author'/>
+
+    <title>MSK DNS FREE</title>
+
+    <link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap' rel='stylesheet' type='text/css'/>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css' rel='stylesheet' type='text/css'/>
+<b:skin><![CDATA[
+
+    /* CSS Variables */
+      :root {
+        --bg-color: #f8f9fa;
+        --text-color: #333;
+        --header-bg: rgba(255, 255, 255, 0.95);
+        --hero-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --card-bg: #fff;
+        --card-shadow: rgba(0, 0, 0, 0.1);
+        --button-bg: #667eea;
+        --button-hover: #764ba2;
+        --footer-bg: #1a1a2e;
+        --accent-color: #667eea;
+        --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+      }
+
+      /* Dark Mode Variables */
+      .dark {
+        --bg-color: #1a1a2e;
+        --text-color: #f8f9fa;
+        --header-bg: rgba(22, 22, 40, 0.95);
+        --hero-bg: linear-gradient(135deg, #2d3561 0%, #3e2857 100%);
+        --card-bg: #16213e;
+        --card-shadow: rgba(0, 0, 0, 0.5);
+      }
+
+      /* Reset & Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+        scroll-behavior: smooth;
+        transition:
+          background-color 0.3s,
+          color 0.3s;
+        max-width: 100vw;
+        overflow-x: hidden;
+      }
+
+      /* Scroll Progress Bar */
+      .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 4px;
+        background: var(--gradient-1);
+        z-index: 9999;
+        transition: width 0.2s ease;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header */
+      header {
+        background: var(--header-bg);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+      header.scrolled {
+        padding: 0.5rem 0;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 800;
+        background: var(--gradient-1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+        z-index: 1002;
+      }
+      .logo:hover {
+        transform: scale(1.05);
+      }
+
+      /* Menu & Nav */
+      .menu-checkbox {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+        width: 0;
+        height: 0;
+      }
+      .menu-toggle {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        z-index: 1003;
+        width: 30px;
+        height: 25px;
+        justify-content: space-between;
+        position: relative;
+      }
+      .menu-toggle span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background: var(--text-color);
+        border-radius: 3px;
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        transform-origin: center;
+      }
+
+      .nav-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 2.5rem;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+      }
+      nav a {
+        text-decoration: none;
+        color: var(--text-color);
+        font-weight: 600;
+        font-size: 0.95rem;
+        position: relative;
+        transition: color 0.3s;
+        letter-spacing: 0.5px;
+      }
+      nav a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--gradient-1);
+        transition: width 0.3s ease;
+      }
+      nav a:hover {
+        color: var(--accent-color);
+      }
+      nav a:hover::after {
+        width: 100%;
+      }
+
+      .theme-toggle {
+        background: none;
+        border: none;
+        color: var(--text-color);
+        font-size: 1.3rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        padding: 0.5rem;
+        border-radius: 50%;
+      }
+      .theme-toggle:hover {
+        background: var(--card-bg);
+        transform: rotate(180deg);
+      }
+
+      .lang-select {
+        background: var(--card-bg);
+        color: var(--text-color);
+        border: 2px solid transparent;
+        border-radius: 8px;
+        padding: 0.5rem 0.8rem;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .lang-select:hover {
+        border-color: var(--accent-color);
+      }
+
+      /* Hero Section */
+      .hero {
+        background: var(--hero-bg);
+        color: white;
+        padding: 8rem 0 6rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></svg>');
+        animation: float 20s linear infinite;
+      }
+      @keyframes float {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(-100px);
+        }
+      }
+
+      .particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      .particle {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        animation: rise 10s infinite ease-in;
+      }
+      @keyframes rise {
+        0% {
+          bottom: -100px;
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          bottom: 100%;
+          opacity: 0;
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+        color: white;
+        font-weight: 800;
+        animation: fadeInUp 1s ease;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+      }
+      .hero p {
+        font-size: 1.3rem;
+        margin-bottom: 2.5rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        animation: fadeInUp 1s ease 0.2s;
+        animation-fill-mode: both;
+        opacity: 0.95;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 1.2rem 2.5rem;
+        background: white;
+        color: var(--accent-color);
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        margin: 0.5rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        animation: fadeInUp 1s ease 0.4s;
+        animation-fill-mode: both;
+        letter-spacing: 0.5px;
+        position: relative;
+        overflow: hidden;
+      }
+      .btn::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(102, 126, 234, 0.1);
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.6s,
+          height 0.6s;
+      }
+      .btn:hover::before {
+        width: 300px;
+        height: 300px;
+      }
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      }
+      .btn-secondary {
+        background: transparent;
+        color: white;
+        border: 2px solid white;
+      }
+      .btn-secondary:hover {
+        background: white;
+        color: var(--accent-color);
+      }
+
+      /* Stats Section */
+      .stats {
+        background: var(--card-bg);
+        padding: 4rem 0;
+        box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.05);
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 3rem;
+        text-align: center;
+      }
+      .stat-item {
+        padding: 1.5rem;
+        position: relative;
+      }
+      .stat-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 3px;
+        background: var(--gradient-1);
+        border-radius: 10px;
+      }
+      .stat-number {
+        font-size: 3rem;
+        font-weight: 800;
+        background: var(--gradient-1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin: 1rem 0 0.5rem;
+      }
+      .stat-label {
+        font-size: 1.1rem;
+        color: var(--text-color);
+        opacity: 0.8;
+      }
+
+      /* Services Section */
+      section {
+        padding: 5rem 0;
+      }
+      .services {
+        background: var(--bg-color);
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.8s ease;
+      }
+      .services.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      .section-header h2 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: var(--gradient-1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1rem;
+      }
+      .section-subtitle {
+        font-size: 1.1rem;
+        color: var(--text-color);
+        opacity: 0.7;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2.5rem;
+      }
+      .service-card {
+        background: var(--card-bg);
+        border-radius: 20px;
+        padding: 2.5rem;
+        box-shadow: 0 10px 40px var(--card-shadow);
+        text-align: center;
+        transition: all 0.4s ease;
+        border: 1px solid transparent;
+        position: relative;
+        overflow: hidden;
+      }
+      .service-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient-1);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: 0;
+      }
+      .service-card:hover::before {
+        opacity: 0.05;
+      }
+      .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 60px var(--card-shadow);
+        border-color: var(--accent-color);
+      }
+      .service-card > * {
+        position: relative;
+        z-index: 1;
+      }
+      .service-card i {
+        font-size: 3.5rem;
+        background: var(--gradient-1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1.5rem;
+        display: inline-block;
+        transition: transform 0.4s ease;
+      }
+      .service-card:hover i {
+        transform: scale(1.1) rotate(5deg);
+      }
+      .service-card h3 {
+        margin-bottom: 1rem;
+        color: var(--text-color);
+        font-size: 1.4rem;
+        font-weight: 700;
+      }
+      .service-card p {
+        color: var(--text-color);
+        opacity: 0.8;
+        line-height: 1.8;
+      }
+
+      /* Pricing Section */
+      .pricing {
+        background: var(--card-bg);
+        padding: 5rem 0;
+      }
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.5rem;
+        margin-top: 3rem;
+      }
+      .pricing-card {
+        background: var(--bg-color);
+        border-radius: 20px;
+        padding: 2.5rem;
+        box-shadow: 0 10px 40px var(--card-shadow);
+        transition: all 0.4s ease;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .pricing-card.featured {
+        transform: scale(1.05);
+        border: 3px solid var(--accent-color);
+      }
+      .pricing-card.featured::before {
+        content: 'PHỔ BIẾN NHẤT';
+        position: absolute;
+        top: 20px;
+        right: -35px;
+        background: var(--gradient-1);
+        color: white;
+        padding: 5px 40px;
+        transform: rotate(45deg);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+      .pricing-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 60px var(--card-shadow);
+      }
+      .pricing-card.featured:hover {
+        transform: translateY(-10px) scale(1.05);
+      }
+
+      .pricing-header h3 {
+        font-size: 1.8rem;
+        color: var(--text-color);
+        margin-bottom: 1rem;
+      }
+      .price {
+        font-size: 3rem;
+        font-weight: 800;
+        background: var(--gradient-1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin: 1.5rem 0;
+      }
+      .price span {
+        font-size: 1rem;
+        opacity: 0.7;
+      }
+
+      .pricing-features {
+        list-style: none;
+        padding: 0;
+        margin: 2rem 0;
+        text-align: left;
+      }
+      .pricing-features li {
+        padding: 0.8rem 0;
+        color: var(--text-color);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      .pricing-features li i {
+        color: #43e97b;
+        margin-right: 10px;
+      }
+
+      .pricing-btn {
+        width: 100%;
+        padding: 1rem;
+        background: var(--gradient-1);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+      }
+      .pricing-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+      }
+
+      /* Newsletter */
+      .newsletter {
+        background: var(--gradient-1);
+        padding: 5rem 0;
+        text-align: center;
+        color: white;
+      }
+      .newsletter h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        font-weight: 800;
+      }
+      .newsletter p {
+        font-size: 1.2rem;
+        margin-bottom: 2.5rem;
+        opacity: 0.9;
+      }
+      .newsletter-form {
+        display: flex;
+        gap: 1rem;
+        max-width: 600px;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .newsletter-input {
+        flex: 1;
+        min-width: 250px;
+        padding: 1.2rem 1.5rem;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-family: 'Inter', sans-serif;
+        outline: none;
+      }
+      .newsletter-btn {
+        padding: 1.2rem 2.5rem;
+        background: white;
+        color: var(--accent-color);
+        border: none;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+      }
+      .newsletter-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Testimonials */
+      .testimonials {
+        background: var(--bg-color);
+        padding: 5rem 0;
+      }
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.5rem;
+        margin-top: 3rem;
+      }
+      .testimonial-card {
+        background: var(--card-bg);
+        padding: 2.5rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px var(--card-shadow);
+        transition: all 0.4s ease;
+        position: relative;
+      }
+      .testimonial-card::before {
+        content: '"';
+        position: absolute;
+        top: 1rem;
+        left: 1.5rem;
+        font-size: 5rem;
+        color: var(--accent-color);
+        opacity: 0.1;
+        font-family: Georgia, serif;
+      }
+      .testimonial-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 50px var(--card-shadow);
+      }
+      .rating {
+        color: #ffc107;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+      }
+      .testimonial-text {
+        margin-bottom: 1.5rem;
+        font-style: italic;
+        line-height: 1.8;
+        color: var(--text-color);
+      }
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .author-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--gradient-1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+        font-size: 1.2rem;
+      }
+      .author-info h4 {
+        color: var(--text-color);
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+      }
+      .author-info p {
+        color: var(--text-color);
+        opacity: 0.6;
+        font-size: 0.9rem;
+      }
+
+      /* FAQ */
+      .faq {
+        padding: 5rem 0;
+        background: var(--card-bg);
+      }
+      .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .faq-item {
+        background: var(--bg-color);
+        margin-bottom: 1.5rem;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px var(--card-shadow);
+        transition: all 0.3s ease;
+      }
+      .faq-item:hover {
+        box-shadow: 0 10px 30px var(--card-shadow);
+      }
+      .faq-question {
+        padding: 1.5rem 2rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 600;
+        color: var(--text-color);
+        transition: all 0.3s ease;
+        user-select: none;
+      }
+      .faq-question:hover {
+        background: var(--card-bg);
+      }
+      .faq-question i {
+        transition: transform 0.3s ease;
+        color: var(--accent-color);
+        font-size: 1.2rem;
+      }
+      .faq-item.active .faq-question i {
+        transform: rotate(180deg);
+      }
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.3s ease,
+          padding 0.3s ease;
+        padding: 0 2rem;
+        color: var(--text-color);
+        opacity: 0.8;
+        line-height: 1.8;
+      }
+      .faq-item.active .faq-answer {
+        max-height: 500px;
+        padding: 0 2rem 1.5rem;
+      }
+
+      /* Buttons & Floating Elements */
+      .chat-button {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        background: var(--gradient-1);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        box-shadow: 0 5px 25px rgba(102, 126, 234, 0.5);
+        z-index: 998;
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+      .chat-button:hover {
+        transform: scale(1.15);
+        box-shadow: 0 10px 35px rgba(102, 126, 234, 0.6);
+        animation: none;
+      }
+
+      .back-to-top {
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: var(--card-bg);
+        color: var(--accent-color);
+        border: 2px solid var(--accent-color);
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 997;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+      }
+      .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+      .back-to-top:hover {
+        background: var(--gradient-1);
+        color: white;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Toast */
+      .toast {
+        position: fixed;
+        top: 100px;
+        right: 30px;
+        background: white;
+        padding: 1.5rem 2rem;
+        border-radius: 10px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(400px);
+        transition: all 0.4s ease;
+        z-index: 9999;
+        max-width: 350px;
+      }
+      .toast.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
+      }
+      .toast.success {
+        border-left: 4px solid #43e97b;
+      }
+      .toast.error {
+        border-left: 4px solid #f5576c;
+      }
+      .toast i {
+        font-size: 1.5rem;
+      }
+      .toast.success i {
+        color: #43e97b;
+      }
+      .toast.error i {
+        color: #f5576c;
+      }
+      .toast-content h4 {
+        margin-bottom: 0.3rem;
+        color: #333;
+        font-weight: 600;
+      }
+      .toast-content p {
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      /* Footer */
+      footer {
+        background: var(--footer-bg);
+        color: white;
+        padding: 4rem 0 1.5rem;
+        position: relative;
+      }
+      footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--gradient-1);
+      }
+      .footer-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+      .footer-info h3 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        background: var(--gradient-1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: 800;
+      }
+      .footer-info p {
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+      .footer-column h4 {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+      }
+      .footer-column ul {
+        list-style: none;
+        padding: 0;
+      }
+      .footer-column ul li {
+        margin-bottom: 1rem;
+      }
+      .footer-column ul li a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        transition: all 0.3s;
+        display: inline-block;
+      }
+      .footer-column ul li a:hover {
+        color: white;
+        transform: translateX(5px);
+      }
+      .footer-column ul li i {
+        margin-right: 10px;
+        color: var(--accent-color);
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+      .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        color: white;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+      }
+      .social-links a:hover {
+        background: var(--gradient-1);
+        transform: translateY(-5px);
+        box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .footer-bottom p {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+      .footer-legal {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+      .footer-legal a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      .footer-legal a:hover {
+        color: white;
+      }
+      .footer-legal span {
+        color: rgba(255, 255, 255, 0.3);
+      }
+
+      /* Responsive */
+      @media (max-width: 992px) {
+        .footer-content {
+          grid-template-columns: 1fr 1fr;
+        }
+        .pricing-grid {
+          grid-template-columns: 1fr;
+        }
+        .pricing-card.featured {
+          transform: scale(1);
+        }
+        .pricing-card.featured:hover {
+          transform: translateY(-10px) scale(1);
+        }
+      }
+      @media (max-width: 768px) {
+        .header-container {
+          width: 100%;
+          max-width: 100%;
+          flex-wrap: nowrap;
+        }
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+        .hero p {
+          font-size: 1.1rem;
+        }
+        .menu-toggle {
+          display: flex;
+          order: 3;
+          flex-shrink: 0;
+        }
+        .logo {
+          order: 1;
+          flex-shrink: 0;
+          font-size: 1.4rem;
+        }
+        .nav-wrapper {
+          order: 2;
+          gap: 0.5rem;
+          flex: 1;
+          justify-content: flex-end;
+          margin-right: 1rem;
+        }
+        .lang-select {
+          padding: 0.4rem 0.5rem;
+          font-size: 0.85rem;
+        }
+        .theme-toggle {
+          padding: 0.4rem;
+          font-size: 1.1rem;
+        }
+
+        .menu-checkbox:checked ~ .menu-toggle span:nth-child(1) {
+          transform: rotate(45deg) translate(7px, 7px);
+        }
+        .menu-checkbox:checked ~ .menu-toggle span:nth-child(2) {
+          opacity: 0;
+          transform: translateX(-20px);
+        }
+        .menu-checkbox:checked ~ .menu-toggle span:nth-child(3) {
+          transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        header {
+          overflow-x: clip;
+        }
+        nav {
+          position: fixed;
+          top: 0;
+          right: 0;
+          width: 280px;
+          height: 100vh;
+          background: var(--header-bg);
+          backdrop-filter: blur(20px);
+          box-shadow: -5px 0 30px rgba(0, 0, 0, 0.2);
+          transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+          transform: translateX(100%);
+          padding: 5rem 0 2rem;
+          z-index: 1002;
+          overflow-y: auto;
+        }
+        .menu-checkbox:checked ~ nav {
+          transform: translateX(0);
+        }
+        nav ul {
+          flex-direction: column;
+          gap: 0;
+        }
+        nav ul li {
+          width: 100%;
+        }
+        nav ul li a {
+          display: block;
+          padding: 1.2rem 2rem;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        nav a::after {
+          display: none;
+        }
+        .menu-checkbox:checked ~ nav::before {
+          content: '';
+          position: fixed;
+          top: 0;
+          left: -100vw;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.5);
+          z-index: -1;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+        }
+        .newsletter-form {
+          flex-direction: column;
+        }
+        .newsletter-input {
+          width: 100%;
+        }
+        .services-grid,
+        .testimonials-grid {
+          grid-template-columns: 1fr;
+        }
+        .chat-button,
+        .back-to-top {
+          width: 50px;
+          height: 50px;
+          bottom: 20px;
+        }
+        .back-to-top {
+          bottom: 85px;
+        }
+        section {
+          padding: 3rem 0;
+        }
+        .toast {
+          right: 10px;
+          left: 10px;
+          max-width: calc(100% - 20px);
+        }
+      }
+      @media (max-width: 480px) {
+        .hero h1 {
+          font-size: 2rem;
+        }
+        .btn {
+          padding: 1rem 1.5rem;
+          font-size: 0.95rem;
+        }
+        .stat-number {
+          font-size: 2.5rem;
+        }
+        .section-header h2 {
+          font-size: 2rem;
+        }
+      }
+
+     ]]></b:skin>
+  </head>
+
+   <body>
+       <b:section id='main'/>
+    <div class='scroll-progress' id='scroll-progress'/>
+
+    <div class='toast' id='toast'>
+      <i class='fas fa-check-circle'/>
+      <div class='toast-content'>
+        <h4 id='toast-title'>Thành công!</h4>
+        <p id='toast-message'>Thao tác đã được thực hiện.</p>
+      </div>
+    </div>
+
+    <header id='header'>
+      <div class='container header-container'>
+        <input class='menu-checkbox' id='menu-checkbox' type='checkbox'/>
+
+        <div class='logo'>🌐 MSK DNS</div>
+
+        <label class='menu-toggle' for='menu-checkbox'>
+          <span/>
+          <span/>
+          <span/>
+        </label>
+
+        <nav id='main-nav'>
+          <ul>
+            <li><a href='#home'>Trang chủ</a></li>
+            <li><a href='#services'>Dịch vụ</a></li>
+            <li><a href='#pricing'>Giá cả</a></li>
+            <li><a href='#testimonials'>Đánh giá</a></li>
+            <li><a href='#faq'>FAQ</a></li>
+            <li><a href='https://www.youtube.com/@masaki.kurosawa'>Youtube</a></li>
+            <li><a href='https://1drv.ms/w/c/6F2919EBF373E0A3/IQBrcV-BTn_wQqE6rGQyNoDPAfb_CFm0vk3pkBl68LreFJs?e=RxSkxD'>Điều Khoản Domain</a></li>
+          </ul>
+        </nav>
+
+        <div class='nav-wrapper'>
+          <button aria-label='Toggle theme' class='theme-toggle' id='theme-toggle'>
+            <i class='fas fa-moon'/>
+          </button>
+          <select aria-label='Select language' class='lang-select' id='lang-select'>
+            <option value='vi'>Tiếng Việt</option>
+            <option value='en'>English</option>
+            <option value='ja'>日本語</option>
+          </select>
+        </div>
+      </div>
+    </header>
+
+    <section class='hero' id='home'>
+      <div class='particles' id='particles'/>
+      <div class='container hero-content'>
+        <h1>Chào mừng đến với Dịch vụ DNS Free</h1>
+        <p>
+          Chúng tôi cung cấp các giải pháp DNS chuyên nghiệp, nhanh chóng và bảo mật cho tên miền
+          con của bạn với hiệu suất tối ưu.
+        </p>
+        <div>
+          <a class='btn' href='#services'>Khám phá ngay</a>
+          <a class='btn btn-secondary' href='#pricing'>Xem giá</a>
+        </div>
+      </div>
+    </section>
+
+    <section class='stats'>
+      <div class='container'>
+        <div class='stats-grid'>
+          <div class='stat-item'>
+            <div class='stat-number' data-target='20'>0</div>
+            <div class='stat-label'>Người dùng hài lòng</div>
+          </div>
+          <div class='stat-item'>
+            <div class='stat-number' data-target='99.9'>0</div>
+            <div class='stat-label'>Uptime %</div>
+          </div>
+          <div class='stat-item'>
+            <div class='stat-number' data-target='50'>0</div>
+            <div class='stat-label'>Quốc gia phủ sóng</div>
+          </div>
+          <div class='stat-item'>
+            <div class='stat-number' data-target='24'>0</div>
+            <div class='stat-label'>Hỗ trợ 24/7</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class='services' id='services'>
+      <div class='container'>
+        <div class='section-header'>
+          <h2>Dịch vụ của Chúng Tôi</h2>
+          <p class='section-subtitle'>Các giải pháp toàn diện cho nhu cầu DNS của bạn</p>
+        </div>
+        <div class='services-grid'>
+          <div class='service-card'>
+            <i class='fas fa-cogs'/>
+            <h3>Thiết lập DNS</h3>
+            <p>
+              Cấu hình DNS nhanh chóng và dễ dàng với giao diện trực quan, hỗ trợ đầy đủ các bản ghi
+              DNS.
+            </p>
+          </div>
+          <div class='service-card'>
+            <i class='fas fa-shield-alt'/>
+            <h3>Bảo mật DNS</h3>
+            <p>
+              Bảo vệ tên miền khỏi DDoS, DNS hijacking với công nghệ DNSSEC và firewall tiên tiến.
+            </p>
+          </div>
+          <div class='service-card'>
+            <i class='fas fa-headset'/>
+            <h3>Hỗ trợ 24/7</h3>
+            <p>Đội ngũ chuyên gia luôn sẵn sàng hỗ trợ qua chat, email, phone mọi lúc mọi nơi.</p>
+          </div>
+          <div class='service-card'>
+            <i class='fas fa-rocket'/>
+            <h3>Tối ưu hóa</h3>
+            <p>Cải thiện tốc độ phân giải DNS lên đến 10x với CDN và Anycast routing toàn cầu.</p>
+          </div>
+          <div class='service-card'>
+            <i class='fas fa-globe'/>
+            <h3>Tên Miền Và Email Domain Free</h3>
+            <p>Chúng Tôi Có dịch vụ để lựa chọn : yourname.mskdns.tokyo</p>
+            <p>yourname@mskdns.tokyo</p>
+          </div>
+          <div class='service-card'>
+            <i class='fas fa-chart-line'/>
+            <h3>Giám sát DNS</h3>
+            <p>Dashboard realtime với biểu đồ chi tiết, cảnh báo tức thì khi có sự cố.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class='pricing' id='pricing'>
+      <div class='container'>
+        <div class='section-header'>
+          <h2>Bảng Giá Dịch Vụ</h2>
+          <p class='section-subtitle'>Chọn gói phù hợp với nhu cầu của bạn</p>
+        </div>
+        <div class='pricing-grid'>
+          <div class='pricing-card'>
+            <div class='pricing-header'>
+              <h3>Miễn Phí</h3>
+              <div class='price'>0Đ<span>/tháng</span></div>
+            </div>
+            <ul class='pricing-features'>
+              <li><i class='fas fa-check'/> 5 tên miền con</li>
+              <li><i class='fas fa-check'/> 40 bản ghi DNS</li>
+              <li><i class='fas fa-check'/> Hỗ trợ email domain</li>
+               <li><i class='fas fa-check'/> Bảo mật nâng cao</li>
+               <li><i class='fas fa-check'/>Gói miễn phí 1 tháng</li>
+            </ul>
+            <button class='pricing-btn'>Bắt đầu ngay</button>
+          </div>
+
+          <div class='pricing-card featured'>
+            <div class='pricing-header'>
+              <h3>Pro</h3>
+              <div class='price'>14.000Đ<span>/tháng</span></div>
+            </div>
+            <ul class='pricing-features'>
+              <li><i class='fas fa-check'/> 50 tên miền con</li>
+              <li><i class='fas fa-check'/> 80 bản ghi DNS</li>
+              <li><i class='fas fa-check'/> Hỗ trợ email domain</li>
+              <li><i class='fas fa-check'/> Hỗ trợ ưu tiên 24/7</li>
+               <li><i class='fas fa-check'/> Advanced security</li>
+              <li><i class='fas fa-check'/> Gói 1 tháng</li>
+
+            </ul>
+            <button class='pricing-btn'>Chọn gói này</button>
+          </div>
+
+          <div class='pricing-card'>
+            <div class='pricing-header'>
+              <h3>Chuyên Nghiệp</h3>
+              <div class='price'>29.000Đ<span>/tháng</span></div>
+            </div>
+            <ul class='pricing-features'>
+              <li><i class='fas fa-check'/> DNS Không giới hạn</li>
+              <li><i class='fas fa-check'/> Hỗ trợ ưu tiên 24/7</li>
+              <li><i class='fas fa-check'/> Hỗ trợ email domain</li>
+              <li><i class='fas fa-check'/> Advanced security</li>
+              <li><i class='fas fa-check'/> Gói 1 tháng</li>
+            </ul>
+            <button class='pricing-btn'>Liên hệ</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class='testimonials' id='testimonials'>
+      <div class='container'>
+        <div class='section-header'>
+          <h2>Khách hàng nói gì về chúng tôi</h2>
+          <p class='section-subtitle'>Hàng nghìn khách hàng hài lòng trên toàn thế giới</p>
+        </div>
+        <div class='testimonials-grid'>
+          <div class='testimonial-card'>
+            <div class='rating'>
+              <i class='fas fa-star'/>
+              <i class='fas fa-star'/>
+              <i class='fas fa-star'/>
+              <i class='fas fa-star'/>
+              <i class='fas fa-star'/>
+            </div>
+            <p class='testimonial-text'>
+              Dịch vụ DNS tuyệt vời! Website của tôi nhanh hơn 5 lần và không còn gặp vấn đề
+              downtime. Đội ngũ support rất chuyên nghiệp.
+            </p>
+            <div class='testimonial-author'>
+              <div class='author-avatar'>NT</div>
+              <div class='author-info'>
+                <h4>Nguyễn Thành</h4>
+                <p>CEO, TechStart Vietnam</p>
+              </div>
+            </div>
+          </div>
+          <div class='testimonial-card'>
+            <div class='rating'>
+              <i class='fas fa-star'/>
+              <i class='fas fa-star'/>
+              <i class='fas fa-star'/>
+              <i class='fas fa-star'/>
+              <i class='fas fa-star'/>
+            </div>
+            <p class='testimonial-text'>
+              Hỗ trợ khách hàng rất nhanh chóng và nhiệt tình. Mọi vấn đề đều được giải quyết trong
+              vòng 5 phút. Highly recommended!
+            </p>
+            <div class='testimonial-author'>
+              <div class='author-avatar'>LM</div>
+              <div class='author-info'>
+                <h4>Lê Mai</h4>
+                <p>Full-stack Developer</p>
+              </div>
+            </div>
+          </div>
+          <div class='testimonial-card'>
+            <div class='rating'>
+              <i class='fas fa-star'/>
+              <i class='fas fa-star'/>
+              <i class='fas fa-star'/>
+              <i class='fas fa-star'/>
+              <i class='fas fa-star'/>
+            </div>
+            <p class='testimonial-text'>
+              Giá cả hợp lý, tính năng đầy đủ. Dashboard trực quan, dễ sử dụng. Đã giới thiệu cho
+              nhiều bạn bè và đồng nghiệp.
+            </p>
+            <div class='testimonial-author'>
+              <div class='author-avatar'>PH</div>
+              <div class='author-info'>
+                <h4>Phạm Hùng</h4>
+                <p>Freelance Web Developer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class='faq' id='faq'>
+      <div class='container'>
+        <div class='section-header'>
+          <h2>Câu hỏi thường gặp</h2>
+          <p class='section-subtitle'>Giải đáp những thắc mắc của bạn</p>
+        </div>
+        <div class='faq-container'>
+          <div class='faq-item'>
+            <div class='faq-question'>
+              <span>DNS là gì và tại sao tôi cần nó?</span>
+              <i class='fas fa-chevron-down'/>
+            </div>
+            <div class='faq-answer'>
+              DNS (Domain Name System) là hệ thống phân giải tên miền, chuyển đổi tên miền dễ nhớ
+              thành địa chỉ IP. Bạn cần DNS để website/ứng dụng của bạn có thể truy cập được trên
+              Internet.
+            </div>
+          </div>
+          <div class='faq-item'>
+            <div class='faq-question'>
+              <span>Dịch vụ có thực sự miễn phí không?</span>
+              <i class='fas fa-chevron-down'/>
+            </div>
+            <div class='faq-answer'>
+              Có, gói Free hoàn toàn miễn phí với đầy đủ tính năng cơ bản. Không cần thẻ tín dụng để
+              đăng ký. Các gói trả phí có thêm nhiều tính năng nâng cao.
+            </div>
+          </div>
+          <div class='faq-item'>
+            <div class='faq-question'>
+              <span>Tốc độ phân giải DNS như thế nào?</span>
+              <i class='fas fa-chevron-down'/>
+            </div>
+            <div class='faq-answer'>
+              Chúng tôi sử dụng mạng lưới Anycast toàn cầu với 50+ data centers. Thời gian phản hồi
+              trung bình dưới 10ms, đảm bảo tốc độ truy cập nhanh nhất từ mọi nơi.
+            </div>
+          </div>
+          <div class='faq-item'>
+            <div class='faq-question'>
+              <span>Có hỗ trợ DNSSEC và DDoS protection không?</span>
+              <i class='fas fa-chevron-down'/>
+            </div>
+            <div class='faq-answer'>
+              Có, gói Pro và Enterprise có đầy đủ DNSSEC để bảo mật và xác thực DNS. Chúng tôi cũng
+              cung cấp DDoS protection layer 7 để bảo vệ khỏi các cuộc tấn công.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class='newsletter'>
+      <div class='container'>
+        <h2>Đăng ký nhận tin tức</h2>
+        <p>Nhận thông tin về các tính năng mới, tips &amp; tricks về DNS và ưu đãi đặc biệt</p>
+        <form class='newsletter-form' id='newsletter-form'>
+          <input class='newsletter-input' placeholder='Nhập email của bạn...' required='' type='email'/>
+          <button class='newsletter-btn' type='submit'>Đăng ký ngay</button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <div class='container'>
+        <div class='footer-content'>
+          <div class='footer-info'>
+            <h3>MSK DNS</h3>
+            <p>
+              Chúng tôi cung cấp các giải pháp DNS chuyên nghiệp, bảo mật và nhanh chóng cho mọi nhu
+              cầu. Với hạ tầng toàn cầu và đội ngũ kỹ thuật giàu kinh nghiệm, chúng tôi cam kết mang
+              đến dịch vụ tốt nhất.
+            </p>
+            <div class='social-links'>
+              <a aria-label='Facebook' href='https://facebook.com' rel='noopener noreferrer' target='_blank'>
+                <i class='fab fa-facebook'/>
+              </a>
+              <a aria-label='Twitter' href='https://twitter.com' rel='noopener noreferrer' target='_blank'>
+                <i class='fab fa-twitter'/>
+              </a>
+              <a aria-label='YouTube' href='https://www.youtube.com/@masaki.kurosawa' rel='noopener noreferrer' target='_blank'>
+                <i class='fab fa-youtube'/>
+              </a>
+              <a aria-label='GitHub' href='https://github.com' rel='noopener noreferrer' target='_blank'>
+                <i class='fab fa-github'/>
+              </a>
+              <a aria-label='LinkedIn' href='https://linkedin.com' rel='noopener noreferrer' target='_blank'>
+                <i class='fab fa-linkedin'/>
+              </a>
+            </div>
+          </div>
+
+          <div class='footer-column'>
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href='#home'>Home</a></li>
+              <li><a href='#services'>Services</a></li>
+              <li><a href='#pricing'>Pricing</a></li>
+              <li><a href='#testimonials'>Testimonials</a></li>
+              <li><a href='#faq'>FAQ</a></li>
+            </ul>
+          </div>
+
+          <div class='footer-column'>
+            <h4>Services</h4>
+            <ul>
+              <li><a href='#'>DNS Hosting</a></li>
+              <li><a href='#'>DNSSEC</a></li>
+              <li><a href='#'>DDoS Protection</a></li>
+              <li><a href='#'>API Access</a></li>
+              <li><a href='#'>Analytics</a></li>
+            </ul>
+          </div>
+
+          <div class='footer-column'>
+            <h4>Contact</h4>
+            <ul>
+              <li><i class='fas fa-envelope'/>support@mskdns.tokyo</li>
+              <li><i class='fas fa-phone'/> +84346005750</li>
+              <li><i class='fas fa-map-marker-alt'/> Yamagata, Japan</li>
+              <li><i class='fas fa-map-marker-alt'/> Ho Chi Minh City, Vietnam</li>
+              
+            </ul>
+          </div>
+        </div>
+
+        <div class='footer-bottom'>
+          <p>&#169; 2026 MSK DNS. All rights reserved.</p>
+          <div class='footer-legal'>
+            <a href='#'>Privacy Policy</a>
+            <span>|</span>
+            <a href='#'>Terms of Service</a>
+            <span>|</span>
+            <a href='#'>Cookie Policy</a>
+            <span>|</span>
+            <a href='https://maps.app.goo.gl/ZpeJFEZavU85M2vYA'>Sitemap</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <button aria-label='Live chat' class='chat-button' id='chat-button'>
+      <i class='fas fa-comments'/>
+    </button>
+
+    <button aria-label='Back to top' class='back-to-top' id='back-to-top'>
+      <i class='fas fa-arrow-up'/>
+    </button>
+    <script type='text/javascript'>
+      // <![CDATA[
+      // Particles Animation
+      function createParticles() {
+        var particlesContainer = document.getElementById('particles');
+        if (!particlesContainer) return;
+
+        for (var i = 0; i < 50; i++) {
+          var particle = document.createElement('div');
+          particle.className = 'particle';
+          particle.style.left = Math.random() * 100 + '%';
+          particle.style.width = Math.random() * 5 + 2 + 'px';
+          particle.style.height = particle.style.width;
+          particle.style.animationDuration = Math.random() * 10 + 5 + 's';
+          particle.style.animationDelay = Math.random() * 5 + 's';
+          particlesContainer.appendChild(particle);
+        }
+      }
+      createParticles();
+
+      // Translations
+      var translations = {
+        vi: {
+          home: 'Trang chủ',
+          services: 'Dịch vụ',
+          pricing: 'Giá cả',
+          testimonials: 'Đánh giá',
+          faq: 'FAQ',
+          heroTitle: 'Chào mừng đến với Dịch vụ DNS Free',
+          heroDesc: 'Chúng tôi cung cấp các giải pháp DNS chuyên nghiệp, nhanh chóng và bảo mật cho tên miền con của bạn với hiệu suất tối ưu.',
+          exploreBtn: 'Khám phá ngay',
+          pricingBtn: 'Xem giá',
+        },
+        en: {
+          home: 'Home',
+          services: 'Services',
+          pricing: 'Pricing',
+          testimonials: 'Testimonials',
+          faq: 'FAQ',
+          heroTitle: 'Welcome to DNS Service Free',
+          heroDesc: 'We provide professional, fast and secure DNS solutions for your subdomains with optimal performance.',
+          exploreBtn: 'Explore Now',
+          pricingBtn: 'View Pricing',
+        },
+        ja: {
+          home: 'ホーム',
+          services: 'サービス',
+          pricing: '料金',
+          testimonials: 'お客様の声',
+          faq: 'よくある質問',
+          heroTitle: 'DNSサービスへようこそ',
+          heroDesc: '最適なパフォーマンスでサブドメインのためのプロフェッショナル、高速、安全なDNSソリューションを提供します。',
+          exploreBtn: '今すぐ探索',
+          pricingBtn: '料金を見る',
+        },
+      };
+
+      var langSelect = document.getElementById('lang-select');
+      var currentLang = localStorage.getItem('lang') || 'vi';
+      if (langSelect) {
+        langSelect.value = currentLang;
+      }
+
+      function changeLanguage(lang) {
+        var navLinks = document.querySelectorAll('nav a');
+        if (navLinks.length >= 5) {
+          navLinks[0].textContent = translations[lang].home;
+          navLinks[1].textContent = translations[lang].services;
+          navLinks[2].textContent = translations[lang].pricing;
+          navLinks[3].textContent = translations[lang].testimonials;
+          navLinks[4].textContent = translations[lang].faq;
+        }
+
+        var heroTitle = document.querySelector('.hero h1');
+        var heroDesc = document.querySelector('.hero p');
+        var btns = document.querySelectorAll('.btn');
+
+        if (heroTitle) heroTitle.textContent = translations[lang].heroTitle;
+        if (heroDesc) heroDesc.textContent = translations[lang].heroDesc;
+        if (btns.length >= 2) {
+          btns[0].textContent = translations[lang].exploreBtn;
+          btns[1].textContent = translations[lang].pricingBtn;
+        }
+      }
+
+      changeLanguage(currentLang);
+
+      if (langSelect) {
+        langSelect.addEventListener('change', function (e) {
+          var lang = e.target.value;
+          localStorage.setItem('lang', lang);
+          changeLanguage(lang);
+          showToast('success', 'Thành công!', 'Đã thay đổi ngôn ngữ');
+        });
+      }
+
+      // Scroll Progress Bar
+      window.addEventListener('scroll', function () {
+        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var scrolled = (winScroll / height) * 100;
+        var progressBar = document.getElementById('scroll-progress');
+        if (progressBar) {
+          progressBar.style.width = scrolled + '%';
+        }
+
+        var header = document.getElementById('header');
+        if (header) {
+          if (winScroll > 100) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+        }
+      });
+
+      // Intersection Observer
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      var sections = document.querySelectorAll('.services, .testimonials, .faq, .pricing');
+      sections.forEach(function (section) {
+        observer.observe(section);
+      });
+
+      // Theme Toggle
+      var toggle = document.getElementById('theme-toggle');
+      var currentTheme = localStorage.getItem('theme');
+      if (currentTheme === 'dark') {
+        document.body.classList.add('dark');
+        if (toggle) {
+          toggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          document.body.classList.toggle('dark');
+          var theme = document.body.classList.contains('dark') ? 'dark' : 'light';
+          localStorage.setItem('theme', theme);
+          toggle.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+          showToast('success', 'Đã thay đổi!', 'Chế độ ' + (theme === 'dark' ? 'tối' : 'sáng') + ' đã được kích hoạt');
+        });
+      }
+
+      // Menu toggle handler
+      var menuToggleBtn = document.querySelector('.menu-toggle');
+      var menuCheckboxInput = document.getElementById('menu-checkbox');
+      if (menuToggleBtn && menuCheckboxInput) {
+        menuToggleBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          menuCheckboxInput.checked = !menuCheckboxInput.checked;
+        });
+      }
+
+      // Close menu when clicking outside (Mobile)
+      document.addEventListener('click', function (event) {
+        var menuCheckbox = document.getElementById('menu-checkbox');
+        var menuToggle = document.querySelector('.menu-toggle');
+        var nav = document.querySelector('#main-nav');
+
+        if (window.innerWidth <= 768 && menuCheckbox && menuCheckbox.checked) {
+          if (!menuToggle.contains(event.target) && !nav.contains(event.target)) {
+            menuCheckbox.checked = false;
+          }
+        }
+      });
+
+      // Close menu on link click (Mobile)
+      document.querySelectorAll('nav a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          var menuCheckbox = document.getElementById('menu-checkbox');
+          if (menuCheckbox && window.innerWidth <= 768) {
+            menuCheckbox.checked = false;
+          }
+        });
+      });
+
+      // FAQ Accordion
+      var faqQuestions = document.querySelectorAll('.faq-question');
+      faqQuestions.forEach(function (question) {
+        question.addEventListener('click', function () {
+          var faqItem = question.parentElement;
+          var wasActive = faqItem.classList.contains('active');
+
+          var allFaqItems = document.querySelectorAll('.faq-item');
+          allFaqItems.forEach(function (item) {
+            item.classList.remove('active');
+          });
+
+          if (!wasActive) {
+            faqItem.classList.add('active');
+          }
+        });
+      });
+
+      // Stats Counter
+      var statNumbers = document.querySelectorAll('.stat-number');
+      var hasAnimated = false;
+      var statsObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && !hasAnimated) {
+              hasAnimated = true;
+              statNumbers.forEach(function (stat) {
+                var target = parseFloat(stat.getAttribute('data-target'));
+                var isDecimal = target % 1 !== 0;
+                var increment = target / 100;
+                var current = 0;
+
+                var updateCount = function () {
+                  if (current < target) {
+                    current += increment;
+                    if (isDecimal) {
+                      stat.textContent = current.toFixed(1);
+                    } else {
+                      stat.textContent = Math.ceil(current).toLocaleString();
+                    }
+                    setTimeout(updateCount, 20);
+                  } else {
+                    if (isDecimal) {
+                      stat.textContent = target.toFixed(1) + '%';
+                    } else {
+                      stat.textContent = target.toLocaleString() + '+';
+                    }
+                  }
+                };
+                updateCount();
+              });
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      var statsSection = document.querySelector('.stats');
+      if (statsSection) {
+        statsObserver.observe(statsSection);
+      }
+
+      // Back to Top Button
+      var backToTop = document.getElementById('back-to-top');
+      window.addEventListener('scroll', function () {
+        if (backToTop) {
+          if (window.pageYOffset > 300) {
+            backToTop.classList.add('visible');
+          } else {
+            backToTop.classList.remove('visible');
+          }
+        }
+      });
+      if (backToTop) {
+        backToTop.addEventListener('click', function () {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
+      // Chat Button
+      var chatButton = document.getElementById('chat-button');
+      if (chatButton) {
+        chatButton.addEventListener('click', function () {
+          showToast('success', 'Chat Live!', 'Tính năng đang được phát triển');
+        });
+      }
+
+      // Newsletter Form
+      var newsletterForm = document.getElementById('newsletter-form');
+      if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var emailInput = e.target.querySelector('input');
+          var email = emailInput ? emailInput.value : '';
+          showToast('success', 'Đăng ký thành công!', 'Cảm ơn bạn đã đăng ký với email: ' + email);
+          e.target.reset();
+        });
+      }
+
+      // Toast Notification Function
+      function showToast(type, title, message) {
+        var toast = document.getElementById('toast');
+        var toastTitle = document.getElementById('toast-title');
+        var toastMessage = document.getElementById('toast-message');
+
+        if (!toast || !toastTitle || !toastMessage) return;
+        toast.className = 'toast ' + type;
+        toastTitle.textContent = title;
+        toastMessage.textContent = message;
+
+        var icon = toast.querySelector('i');
+        if (icon) {
+          if (type === 'success') {
+            icon.className = 'fas fa-check-circle';
+          } else {
+            icon.className = 'fas fa-exclamation-circle';
+          }
+        }
+
+        toast.classList.add('show');
+        setTimeout(function () {
+          toast.classList.remove('show');
+        }, 3000);
+      }
+
+      // Pricing Button Click
+      var pricingBtns = document.querySelectorAll('.pricing-btn');
+      pricingBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          showToast('success', 'Tuyệt vời!', 'Vui Lòng Liên hệ support@mskdns.tokyo để đặt hàng');
+        });
+      });
+
+      // Smooth scroll for anchor links
+      var anchorLinks = document.querySelectorAll('a[href^="#"]');
+      anchorLinks.forEach(function (anchor) {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          var href = this.getAttribute('href');
+          if (href && href !== '#') {
+            var target = document.querySelector(href);
+            if (target) {
+              target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+              });
+            }
+          }
+        });
+      });
+      // ]]>
+    </script>
+  </body>
+</html>
